@@ -1,5 +1,4 @@
-<div class="row justify-content-center">
-	<div class="form col-md-auto">
+
 		<h2>Create a new certificate:</h2>
 		<form name="createCertificateForm">
 			<input type="text"
@@ -111,12 +110,9 @@
 			ng-model="$ctrl.endDate"
 			required/>
 			<input type="submit"
-			class="btn btn-custom"
 			value="Create"
 			ng-click="createCertificateForm.$valid && $ctrl.send()"/>
 			<p>
 				{{$ctrl.status}}
 			</p>
 		</form>
-	</div>
-</div>
