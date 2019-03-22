@@ -29,7 +29,7 @@ public class CertificateController {
 	private CertificateService certificateService;
 	@Autowired
 	private SubjectDataConverter converter;
-
+  
 
 	@PostMapping("/self-signed")
 	public ResponseEntity<?> addSelfSignedCertificate(@RequestBody SubjectDataDTO input) {
