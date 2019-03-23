@@ -1,6 +1,7 @@
+	<body bgcolor="F3FF33">>
 
-		<h2>Create a new certificate:</h2>
-		<form name="createCertificateForm">
+	<h2 style="color:#069">Create a certificate</h2>
+		<form name="createCertificateForm"> 
 			<input type="text"
 			class="form-group form-control"
 			placeholder="Keystore*"
@@ -23,7 +24,7 @@
 					id="isSelfSigned"
 					ng-model="$ctrl.isSelfSigned">
 				<label class="form-check-label" for="isSelfSigned">
-					Self Signed
+				<font color="red">	Self Signed </font>
 				</label>
 			</div>
 			<input type="text"
@@ -50,8 +51,8 @@
 					id="isCA"
 					ng-model="$ctrl.certificate.ca"
 					ng-disabled="$ctrl.isSelfSigned">
-				<label class="form-check-label" for="isCA">
-					Certificate Authority
+				<label  class="form-check-label" for="isCA">
+				<font color="red">	Certificate Authority </font>
 				</label>
 			</div>
 			<hr />
@@ -116,3 +117,4 @@
 				{{$ctrl.status}}
 			</p>
 		</form>
+</body>

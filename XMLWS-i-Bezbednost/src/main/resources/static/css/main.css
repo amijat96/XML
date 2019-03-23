@@ -11,6 +11,11 @@
 	--placeholder_text_color: #a8a8a8;
 }
 
+<style>
+body {
+  background-color: rgb(201, 76, 76);
+}
+</style>
 /* Lato font*/
 @font-face {
 	font-family: 'Lato';

@@ -1,4 +1,6 @@
-		<h2>Retrieve an existing certificate:</h2>
+	<body bgcolor="F3FF33">>
+		<h2 style="color:#069"> Retrieve an existing certificate:</h2>
+		<body>
 		<form name="getCertificateForm">
 			<input type="text"
 			placeholder="Keystore*"
@@ -22,6 +24,10 @@
 				ng-if="$ctrl.certificate"
 				ng-href="data:application/x-x509-user-cert;base64,{{$ctrl.certificate}}"
 				download="certificate.crt">
+				<font color="red">
 					Download certificate
+					</font>
 			</a>
 		</form>
+		</body>
+	
