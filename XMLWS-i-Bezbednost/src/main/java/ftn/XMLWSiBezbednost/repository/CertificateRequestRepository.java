@@ -9,4 +9,6 @@ import ftn.XMLWSiBezbednost.utils.data.User;
 
 public interface CertificateRequestRepository extends JpaRepository<CertificateSigningRequest, Integer>  {
 	 List<CertificateSigningRequest> findByUser(User user);
+	 List<CertificateSigningRequest> findByState(CertificateSigningRequest.CSRState state);
+
 }
