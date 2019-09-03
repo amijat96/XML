@@ -1,0 +1,117 @@
+<div class="container" ng-init="certCtrl.getCertificate()">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="row">
+            <h3>Certificate &nbsp;
+                <span class="label label-primary" ng-if="certCtrl.certificate.status ==='VALID'">valid</span>
+                <span class="label label-default" ng-if="certCtrl.certificate.status ==='EXPIRED'">expired</span>
+                <span class="label label-danger" ng-if="certCtrl.certificate.status ==='REVOKED'">revoked</span>
+                <span class="label label-warning" ng-if="certCtrl.certificate.status ==='ON_HOLD'">on hold</span>
+            </h3>
+        </div>
+        <br><hr><br>
+        <div class="row" ng-if="certCtrl.certificate.certificateData.ca">
+            <div class="col-md-6">
+                <label>This certificate belongs to a CA</label>
+            </div>
+            <div class="col-md-6">
+                <a href="/#/ca/{{certCtrl.certificate.ca}}"><label>See CA</label></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Issuer: </label>
+            </div>
+            <div ng-switch="certCtrl.certificate.issuer">
+                <div class="col-md-6" ng-switch-when="-1">
+                    <label>self</label>
+                </div>
+                <div class="col-md-6" ng-switch-default>
+                    <a href="/#/ca/{{certCtrl.certificate.issuer}}"><label>See issuer</label></a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Valid from: </label>
+            </div>
+            <div class="col-md-6">
+                <label>{{certCtrl.certificate.validFrom | showDateFilter}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Valid to: </label>
+            </div>
+            <div class="col-md-6">
+                <label>{{certCtrl.certificate.validTo | showDateFilter}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Common name: </label>
+            </div>
+            <div class="col-md-6">
+                <label>{{certCtrl.certificate.certificateData.commonName}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Given name: </label>
+            </div>
+            <div class="col-md-6">
+                <label>{{certCtrl.certificate.certificateData.givenName}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Surname: </label>
+            </div>
+            <div class="col-md-6">
+                <label>{{certCtrl.certificate.certificateData.surname}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Organization: </label>
+            </div>
+            <div class="col-md-6">
+                <label>{{certCtrl.certificate.certificateData.organization}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Organizational unit: </label>
+            </div>
+            <div class="col-md-6">
+                <label>{{certCtrl.certificate.certificateData.organizationalUnit}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Country code: </label>
+            </div>
+            <div class="col-md-6">
+                <label>{{certCtrl.certificate.certificateData.countryCode}}</label>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Email address: </label>
+            </div>
+            <div class="col-md-6">
+                <label>{{certCtrl.certificate.certificateData.emailAddress}}</label>
+            </div>
+        </div>
+        <br><hr><br>
+        <div class="row" ng-if="certCtrl.certificate.cerFileName !== ''">
+            <a href="http://localhost:8080/certificates/{{certCtrl.certificate.cerFileName}}" target="_self" download="{{certCtrl.certificate.cerFileName}}">
+                <button type="button" class="btn btn-primary">Download certificate</button>
+            </a>
+        </div>
+        <div class="row" ng-if="certCtrl.isAdmin() || (certCtrl.certificate.user === certCtrl.getLoggedInUser().email && certCtrl.certificate.user != null)">
+            <a href="/#/revoke/{{certCtrl.certificate.id}}" ng-if="certCtrl.certificate.revocation == null"><button type="button" class="btn btn-danger" >Revoke certificate <span class="glyphicon glyphicon-remove"></span></button></a>
+            <button type="button" class="btn btn-warning" ng-if="certCtrl.certificate.revocation && !certCtrl.certificate.revocation.fullyRevoked" ng-click="certCtrl.restore()">Restore certificate</button>
+            <a href="/#/revoke/{{certCtrl.certificate.id}}"><button type="button" class="btn btn-danger" ng-if="certCtrl.certificate.revocation && !certCtrl.certificate.revocation.fullyRevoked">Fully revoke certificate</button></a>
+        </div>
+    </div>
+</div>

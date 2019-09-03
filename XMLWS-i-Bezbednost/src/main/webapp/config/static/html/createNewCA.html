@@ -1,0 +1,101 @@
+<div class="container">
+    <div class="col-md-offset-2 col-md-8">
+        <div class="row">
+            <h3>Create new Certificate Authority</h3>
+        </div>
+        <hr><br><br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Issuer: </label>
+            </div>
+            <div class="col-md-6">
+                <a href="/#/ca/{{caCtrl.issuer}}">See issuer</a>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Common name: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" ng-model="caCtrl.CA.certificate.certificateData.commonName">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Given name: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" ng-model="caCtrl.CA.certificate.certificateData.givenName">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Surname: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" ng-model="caCtrl.CA.certificate.certificateData.surname">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Organizational unit: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" ng-model="caCtrl.CA.certificate.certificateData.organizationalUnit">
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>CA Role: </label>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" ng-model="caCtrl.CA.caRole">
+                    <option selected value="INTERMEDIATE">Intermediate CA</option>
+                    <option value="CA_ISSUER">CA issuer</option>
+                    <option value="HTTPS_ISSUER">HTTPS certificate issuer</option>
+                    <option value="MAIL_ISSUER">Mail certificate issuer</option>
+                    <option value="DOC_SIGN_ISSUER">Document signing certificate issuer</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <label>Duration: </label>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" ng-model="caCtrl.CA.duration">
+                    <option value="1">1 year</option>
+                    <option selected value="2">2 years</option>
+                    <option value="3">3 years</option>
+                    <option value="4">4 years</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row" ng-if="caCtrl.CA.role !== 'INTERMEDIATE'">
+            <div class="col-md-6">
+                <label>Duration of issued certificates: </label>
+            </div>
+            <div class="col-md-6">
+                <select class="form-control" ng-model="caCtrl.CA.durationOfIssuedCertificates">
+                    <option value="3">3 months</option>
+                    <option value="6">6 months</option>
+                    <option selected value="12">1 year</option>
+                    <option value="24">2 years</option>
+                </select>
+            </div>
+        </div>
+        <hr><br>
+        <div class="row">
+            <div class="col-md-4">
+                <button type="button" class="btn btn-success" ng-click="caCtrl.create()">Create</button>
+            </div>
+        </div>
+    </div>
+</div>
