@@ -12,6 +12,6 @@ public class XmlwsIBezbednostApplication {
 	public static void main(String[] args) {
 		Security.addProvider(new BouncyCastleProvider());
 		SpringApplication.run(XmlwsIBezbednostApplication.class, args);
-		System.out.println("ssssssopp");
+		System.out.println("ovajcommitmojsmrdinaznoj");
 	}
 }
