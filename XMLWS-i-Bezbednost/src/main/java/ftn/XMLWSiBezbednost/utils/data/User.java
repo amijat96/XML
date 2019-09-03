@@ -8,6 +8,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
@@ -25,11 +26,18 @@ public abstract class User extends AbstractEntity {
 	
 	@Column(name = "signupdate", nullable = false)
 	protected Date signupDate;
+	@OneToMany(mappedBy = "user")
+	protected List<CertificateSigningRequest> requests;
+
+	@OneToMany(mappedBy = "user")
+	protected List<Certificate> certificates;
 
 	public User() {
-	
+		certificates = new ArrayList<>();
+		requests = new ArrayList<>();
 	}
 
+	
 	public abstract String getRole();
 
 	public String getEmail() {
@@ -71,5 +79,20 @@ public abstract class User extends AbstractEntity {
 		this.signupDate = signupDate;
 	}
 
+	public List<CertificateSigningRequest> getRequests() {
+		return requests;
+	}
+
+	public void setRequests(List<CertificateSigningRequest> requests) {
+		this.requests = requests;
+	}
+
+	public List<Certificate> getCertificates() {
+		return certificates;
+	}
+
+	public void setCertificates(List<Certificate> certificates) {
+		this.certificates = certificates;
+	}
 
 }
